@@ -31,7 +31,7 @@ def main():
     # BING_COOKIE_JSON = args.bing_cookie_json or env.get("BING_COOKIE_JSON") or env.get("COOKIE_FILE")
     OPENAI_API_KEY = env.get("OPENAI_API_KEY")
     if not OPENAI_API_KEY:
-        raise Exception("OpenAI API key not provided, please google how to obtain it")
+        raise Exception("OpenAI API key not provided, please provide it by running `export OPENAI_API_KEY=<sk-XXXX>`")
 
     # what = What(args.what, is_en=args.en, api_base=args.api_base)
     what = What(args.what, is_zh=args.zh, api_base=None)
