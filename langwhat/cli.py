@@ -38,6 +38,10 @@ def get_args():
     )
 
     parser.add_argument(
+        '-C', '--no-cache', dest='no_cache', action='store_true', help='Disable cache'
+    )
+
+    parser.add_argument(
         '-V',
         '--version',
         action='version',
@@ -71,6 +75,11 @@ def main():
 
         BING_COOKIE_JSON = get_cookies_file()
 
+    if not args.no_cache:
+        from .utils import use_langchain_sqlite_cache
+
+        use_langchain_sqlite_cache()
+
     # what = What(args.what, is_en=args.en, api_base=args.api_base)
     langwhat = LangWhat(
         args.what,
@@ -79,9 +88,7 @@ def main():
         sydney=args.sydney,
         api_base=None,
     )
-    import asyncio
-
-    asyncio.run(langwhat.show())
+    langwhat.show()
 
 
 if __name__ == "__main__":

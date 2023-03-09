@@ -13,7 +13,6 @@ Answer "What is it?" on the command line with the power of large language models
     - [pipx](#pipx)
     - [pip](#pip)
   - [Usage](#usage)
-  - [Roadmap](#roadmap)
   - [Develop](#develop)
   - [Credits](#credits)
 
@@ -43,6 +42,8 @@ langwhat 'marry ball washington' -s -z
 - Uses few-shot prompting to reduce model mis-behavior
 - English by default for superior response speed and accuracy
 - Supports supplying API Key via either environment variable or config file at `~/.config/langwhat/api_key.txt`
+- Supports using [Sydney](https://www.bing.com/search?q=Bing+AI&showconv=1) with `-s` flag
+- Caching responses in a local sqlite database
 
 
 ## Installation
@@ -84,8 +85,6 @@ options:
 ```
 
 
-## Roadmap
-- [ ] Integrate [Sydney](https://www.bing.com/search?q=Bing+AI&showconv=1)
 
 ## Develop
 

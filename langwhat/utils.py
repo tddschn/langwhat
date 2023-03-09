@@ -63,7 +63,7 @@ YouTube 视频 ID
 You are a helpful assistant that answer questions in the format below,
 you must answer the question only, do not ask what I want to know more about:
 """
-'''
+'''.lstrip()
     suffix_sydney = '''"""\n\nBEGIN!\n\nQ: {input}'''
     suffix_openai = '''\nQ: {input}'''
     langwhat_prompt = FewShotPromptTemplate(
@@ -76,12 +76,20 @@ you must answer the question only, do not ask what I want to know more about:
     return langwhat_prompt
 
 
-def get_llm_chain(is_zh: bool = False) -> 'LLMChain':
+def get_llm_chain(
+    is_zh: bool = False, sydney: bool = False, cookie_path: str | None = None
+) -> 'LLMChain':
     from langchain.llms import OpenAIChat
     from langchain.chains import LLMChain
+    from .llm import EdgeLLM
 
-    llm = OpenAIChat()  # type: ignore
-    langwhat_prompt = get_prompt(is_zh=is_zh)
+    if sydney:
+        if cookie_path is None:
+            raise ValueError("cookie_path is required for sydney.")
+        llm = EdgeLLM(bing_cookie_path=cookie_path)
+    else:
+        llm = OpenAIChat()  # type: ignore
+    langwhat_prompt = get_prompt(is_zh=is_zh, sydney=sydney)
     chain = LLMChain(llm=llm, prompt=langwhat_prompt)
     return chain
 
@@ -115,7 +123,7 @@ def parse_standard_answer_format(answer: str) -> tuple[str, str]:
     return might_be, description
 
 
-def parse_chain_response(chain_response: dict[str, str]) -> tuple[str, str]:
+def parse_chain_response(chain_response: dict[str, str]) -> tuple[str, str, str]:
     """Parse the response from the chain.
 
     Args:
@@ -125,7 +133,7 @@ def parse_chain_response(chain_response: dict[str, str]) -> tuple[str, str]:
         tuple[str, str]: The first element is the might be, the second element is the description.
     """
     answer = chain_response['text']
-    return parse_standard_answer_format(answer)
+    return split_edgegpt_answer(answer)
 
 
 def split_edgegpt_answer(answer: str) -> tuple[str, str, str]:
@@ -140,16 +148,9 @@ def split_edgegpt_answer(answer: str) -> tuple[str, str, str]:
     return references, *parse_standard_answer_format(answer_body)
 
 
-# def save_prompts(
-#     langwhat_prompt: 'FewShotPromptTemplate',
-#     langwhat_prompt_zh: 'FewShotPromptTemplate',
-# ):
-#     from pathlib import Path
+def use_langchain_sqlite_cache():
+    import langchain
+    from langchain.cache import SQLiteCache
+    from .config import LANGCHAIN_SQLITE_CACHE_FILE
 
-#     base_dir = Path(__file__).parent
-#     for ext in ('.yaml', '.json'):
-#         for i, prompt in enumerate((langwhat_prompt, langwhat_prompt_zh)):
-#             if i == 0:
-#                 prompt.save(base_dir / f'langwhat_prompt{ext}')
-#             else:
-#                 prompt.save(base_dir / f'langwhat_prompt_zh{ext}')
+    langchain.llm_cache = SQLiteCache(database_path=str(LANGCHAIN_SQLITE_CACHE_FILE))

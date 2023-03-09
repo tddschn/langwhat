@@ -3,6 +3,7 @@ from pathlib import Path
 XDG_CONFIG_DIR = Path.home() / '.config'
 OPENAI_API_KEY_FILE = Path(XDG_CONFIG_DIR) / "langwhat" / "api_key.txt"
 EDGEGPT_COOKIE_FILE = Path(XDG_CONFIG_DIR) / "langwhat" / "cookie_file_path.txt"
+LANGCHAIN_SQLITE_CACHE_FILE = Path(XDG_CONFIG_DIR) / "langwhat" / "langchain-cache.db"
 
 
 def get_api_key() -> str:

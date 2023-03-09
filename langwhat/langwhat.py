@@ -20,38 +20,26 @@ class LangWhat:
         self.cookie_path = bing_cookie_json_path
         self.references: str | None = None
 
-    def get_response_openai(self):
+    def get_response(self):
         from langwhat.utils import get_llm_chain
 
-        chain = get_llm_chain(is_zh=self.is_zh)
+        chain = get_llm_chain(
+            is_zh=self.is_zh, sydney=self.sydney, cookie_path=self.cookie_path
+        )
         response = chain(self.query)
         from .utils import parse_chain_response
 
-        self.might_be, self.description = parse_chain_response(response)
-
-    async def get_response_sydney(self):
-        from langwhat.utils import get_edgegpt_answer, split_edgegpt_answer
-
-        assert self.cookie_path is not None
-        edgegpt_answer = await get_edgegpt_answer(
-            cookie_path=self.cookie_path, query=self.query, is_zh=self.is_zh
+        self.references, self.might_be, self.description = parse_chain_response(
+            response
         )
-        references, self.might_be, self.description = split_edgegpt_answer(
-            edgegpt_answer
-        )
-        if references:
-            self.references = references
 
-    async def show(self):
+    def show(self):
         from rich.console import Console
         from rich.table import Table
         from rich.style import Style
         from rich.text import Text
 
-        if self.sydney:
-            await self.get_response_sydney()
-        else:
-            self.get_response_openai()
+        self.get_response()
 
         console = Console()
         title = Text(
