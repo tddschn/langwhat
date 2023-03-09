@@ -1,11 +1,12 @@
-# langwhat
-What is it? 
+# LangWhat
+
+Answer "What is it?" on the command line with the power of large language models (LLMs).
 
 [pyWhat](https://github.com/bee-san/pyWhat) LLM version, leveraging OpenAI API and Sydney (coming soon).
 
-Modified from Yihong's [iWhat](https://github.com/yihong0618/iWhat).
+Forked from Yihong's [iWhat](https://github.com/yihong0618/iWhat).
 
-- [langwhat](#langwhat)
+- [LangWhat](#langwhat)
   - [Screenshots](#screenshots)
   - [Improvements](#improvements)
   - [Installation](#installation)
