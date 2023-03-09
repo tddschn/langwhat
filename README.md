@@ -34,6 +34,10 @@ This is the recommended installation method.
 
 ```
 $ pipx install langwhat
+
+# python 3.11 or higher is required, if your pipx uses a lower version of python by default,
+# you could run the following command to install langwhat with python 3.11
+# pipx install --python "$(which python3.11)"
 ```
 
 ### [pip](https://pypi.org/project/langwhat/)
