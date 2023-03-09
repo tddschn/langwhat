@@ -25,7 +25,7 @@ class What:
         title = Text("LangWhat", style=Style(color="#268bd2", bold=True))
         table = Table(title=title, show_lines=False, style="dim")
         table.add_column("Query", style=Style(color="#b58900"))
-        table.add_column("Might Be", style=Style(color="#d33682"), justify="middle")
+        table.add_column("Might Be", style=Style(color="#d33682"), justify="middle") # type: ignore
         table.add_column("Description", style=Style(color="#859900"), justify="left")
         table.add_row(self.query, might_be, description)
         console.print(table)

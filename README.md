@@ -24,6 +24,7 @@ Forked from Yihong's [iWhat](https://github.com/yihong0618/iWhat).
 ## Improvements
 - Uses few-shot prompting to reduce model mis-behavior
 - English by default for superior response speed and accuracy
+- Supports supplying API Key via either environment variable or config file at `~/.config/langwhat/api_key.txt`
 
 
 ## Installation
