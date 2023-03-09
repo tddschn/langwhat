@@ -8,6 +8,7 @@ Answer "What is it?" on the command line with the power of large language models
   - [Screenshots](#screenshots)
     - [OpenAI](#openai)
     - [Sydney](#sydney)
+    - [Caching](#caching)
   - [Features](#features)
   - [Installation](#installation)
     - [pipx](#pipx)
@@ -30,14 +31,30 @@ langwhat 'f7316ffccd4d2d555a7522328cf792dd73bfbcd9' --zh
 
 ### Sydney
 
+Sydney fixed my type "marry" automatically.
+
 ```bash
 langwhat 'marry ball washington' -s
 
 langwhat 'marry ball washington' -s -z
 ```
 
+
 ![](images/screenshot-sydney-mary.png)
 
+### Caching
+
+Responses are much faster when cache hits, and token usage becomes 0.
+
+Note that Sydney doesn't support counting token usage, and always shows 0.
+
+```bash
+lw teddy --show-token-usage
+
+lw teddy --show-token-usage
+```
+
+![](images/screenshot-caching-teddy.png)
 ## Features
 - Uses few-shot prompting to reduce model mis-behavior
 - English by default for superior response speed and accuracy
@@ -72,16 +89,18 @@ $ pip install langwhat
 ```
 $ langwhat --help
 
-usage: lw [-h] [-z] [-s] [-V] what
+usage: lw [-h] [-z] [-s] [-C] [--show-token-usage] [-V] what
 
 positional arguments:
-  what           what is it
+  what                what is it
 
 options:
-  -h, --help     show this help message and exit
-  -z, --zh       Use Mandarin to prompt and answer
-  -s, --sydney   Use Sydney (Bing AI) instead of OpenAI
-  -V, --version  show program's version number and exit
+  -h, --help          show this help message and exit
+  -z, --zh            Use Mandarin to prompt and answer
+  -s, --sydney        Use Sydney (Bing AI) instead of OpenAI
+  -C, --no-cache      Disable cache
+  --show-token-usage  Show token usage
+  -V, --version       show program's version number and exit
 ```
 
 

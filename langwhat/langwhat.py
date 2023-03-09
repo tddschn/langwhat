@@ -9,6 +9,7 @@ class LangWhat:
         sydney: bool = False,
         bing_cookie_json_path: str | None = None,
         api_base: str | None = None,
+        show_token_usage: bool = False,
     ):
         # if api_base:
         #     openai.api_base = api_base
@@ -19,14 +20,21 @@ class LangWhat:
             raise Exception("Bing cookie json path not provided")
         self.cookie_path = bing_cookie_json_path
         self.references: str | None = None
+        self.total_tokens = 0
+        self.show_token_usage = show_token_usage
 
     def get_response(self):
-        from langwhat.utils import get_llm_chain
+        from .utils import get_llm_chain
 
         chain = get_llm_chain(
             is_zh=self.is_zh, sydney=self.sydney, cookie_path=self.cookie_path
         )
-        response = chain(self.query)
+        from langchain.callbacks import get_openai_callback
+
+        with get_openai_callback() as cb:
+            response = chain(self.query)
+            self.total_tokens = cb.total_tokens
+
         from .utils import parse_chain_response
 
         self.references, self.might_be, self.description = parse_chain_response(
@@ -56,3 +64,6 @@ class LangWhat:
         if self.references:
             console.print("References:")
             console.print(self.references)
+
+        if self.show_token_usage:
+            console.print(f"Total tokens used: {self.total_tokens}")

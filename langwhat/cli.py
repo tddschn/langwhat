@@ -42,6 +42,13 @@ def get_args():
     )
 
     parser.add_argument(
+        '--show-token-usage',
+        dest='show_token_usage',
+        action='store_true',
+        help='Show token usage',
+    )
+
+    parser.add_argument(
         '-V',
         '--version',
         action='version',
@@ -87,6 +94,7 @@ def main():
         bing_cookie_json_path=BING_COOKIE_JSON,
         sydney=args.sydney,
         api_base=None,
+        show_token_usage=args.show_token_usage,
     )
     langwhat.show()
 

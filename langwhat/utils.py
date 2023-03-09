@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from langchain.chains import LLMChain
     from langchain.prompts.few_shot import FewShotPromptTemplate
-    from EdgeGPT import Chatbot
 
 
 def get_prompt(is_zh: bool = False, sydney: bool = False) -> 'FewShotPromptTemplate':
@@ -92,23 +91,6 @@ def get_llm_chain(
     langwhat_prompt = get_prompt(is_zh=is_zh, sydney=sydney)
     chain = LLMChain(llm=llm, prompt=langwhat_prompt)
     return chain
-
-
-async def get_edgegpt_answer(
-    cookie_path: str,
-    query: str,
-    is_zh: bool = False,
-) -> str:
-    from EdgeGPT import Chatbot
-
-    bot = Chatbot(
-        cookiePath=cookie_path,
-    )
-    langwhat_prompt = get_prompt(is_zh=is_zh, sydney=True)
-    prompt = langwhat_prompt.format(input=query)
-    response = await bot.ask(prompt)
-    answer = response["item"]["messages"][1]["adaptiveCards"][0]["body"][0]["text"]
-    return answer
 
 
 def parse_standard_answer_format(answer: str) -> tuple[str, str]:
