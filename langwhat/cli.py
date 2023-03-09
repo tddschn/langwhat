@@ -2,6 +2,7 @@
 
 import argparse
 from os import environ as env
+from . import __version__
 
 
 def main():
@@ -22,6 +23,12 @@ def main():
     # )
     parser.add_argument(
         "-z", "--zh", dest="zh", action="store_true", help="If use Mandarin to answer"
+    )
+
+    parser.add_argument(
+        '-V', '--version',
+        action='version',
+        version=f'%(prog)s {__version__}',
     )
 
     args = parser.parse_args()
