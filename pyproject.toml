@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "langwhat"
+version = "0.1.0"
+description = "What is it? pyWhat but with LLMs"
+authors = ["Teddy Xinyuan Chen <45612704+tddschn@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/tddschn/langwhat"
+repository = "https://github.com/tddschn/langwhat"
+classifiers = ["Topic :: Utilities"]
+keywords = ["LLM"]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/tddschn/langwhat/issues"
+
+[tool.poetry.scripts]
+langwhat = "langwhat.cli:main"
+lw = "langwhat.cli:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+openai = "^0.27.1"
+rich = "^13.3.2"
+edgegpt = "^0.0.55"
+langchain = "^0.0.105"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

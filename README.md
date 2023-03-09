@@ -1,44 +1,81 @@
-# iWhat
-What is it? Using AI Inspired by [pyWhat](https://github.com/bee-san/pyWhat)
+# langwhat
+What is it? 
 
-![image](https://user-images.githubusercontent.com/15976103/223741774-a46ffde6-0f32-4f6f-8e6b-fda5bd07a235.png)
+[pyWhat](https://github.com/bee-san/pyWhat) LLM version, leveraging OpenAI API and Sydney (coming soon).
 
-![image](https://user-images.githubusercontent.com/15976103/223899137-dd5bc056-3d06-4469-87af-a1887f55b8fc.png)
+Modified from Yihong's [iWhat](https://github.com/yihong0618/iWhat).
+
+- [langwhat](#langwhat)
+  - [Improvements](#improvements)
+  - [Installation](#installation)
+    - [pipx](#pipx)
+    - [pip](#pip)
+  - [Usage](#usage)
+  - [Roadmap](#roadmap)
+  - [Develop](#develop)
+  - [Credits](#credits)
+
+## Screenshots
 
 
-## 安装
+## Improvements
+- Uses few-shot prompting to reduce model mis-behavior
+- English by default for superior response speed and accuracy
 
 
-```console
-pip install iwhat
+## Installation
+
+### pipx
+
+This is the recommended installation method.
+
+```
+$ pipx install langwhat
 ```
 
-## 使用
-
-1. 首先，需要提供你的 OpenAI API key 。你可以把它导入到终端环境变量：
+### [pip](https://pypi.org/project/langwhat/)
 
 ```
-export OPENAI_API_KEY=${your_api_key}
-```
-导入后，以后查询到时候，就不用再提供这个参数了。
-
-你也可以在拼接在查询命令行中：
-
-```
-iwhat ${word} --openai_key "sk-xxxxxx"`
+$ pip install langwhat
 ```
 
-2. 查询：
+
+## Usage
+
+
+First, set your OpenAI API key as an environment variable:
+
+```bash
+export OPENAI_API_KEY=<sk-XXXX> # replace it with your OpenAI API key
+```
+
+Then start using it by passing any string to the `langwhat` command.
 
 ```
-iwhat ${word}
+$ langwhat --help
+
+usage: langwhat [-h] [-z] what
+
+positional arguments:
+  what        what is it
+
+options:
+  -h, --help  show this help message and exit
+  -z, --zh    If use Mandarin to answer
 ```
-**`word` 请用单引号包裹**，例如：`iwhat 'AI'`
 
-## 注意
 
-1. 能正常联网的环境或 proxy
-2. 如果你遇到了墙需要用 Cloudflare Workers 替换 api_base 请使用 `--api_base ${url}` 来替换。**请注意，此处你输入的api应该是"`https://xxxx/v1`"的字样，域名需要用引号包裹**
+## Roadmap
+- [ ] Integrate [Sydney](https://www.bing.com/search?q=Bing+AI&showconv=1)
 
-## 赞赏
-谢谢就够了
+## Develop
+
+```
+$ git clone https://github.com/tddschn/langwhat.git
+$ cd langwhat
+$ poetry install
+```
+
+## Credits
+- [Yihong](https://github.com/yihong0618/iWhat)
+- LangChain

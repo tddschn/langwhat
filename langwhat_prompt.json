@@ -1,0 +1,36 @@
+{
+    "input_variables": [
+        "input"
+    ],
+    "output_parser": null,
+    "partial_variables": {},
+    "examples": [
+        {
+            "question": "vJzDRsEKDa0",
+            "answer": "\nMight be:\nA YouTube video ID\nDescription:\nThe ID \"vJzDRsEKDa0\" is most likely a unique identifier for a specific video on YouTube.\nThis alphanumeric code is automatically assigned to every video uploaded on the platform and is used to access the video directly or share it with other users.\n"
+        },
+        {
+            "question": "https://langchain.readthedocs.io/",
+            "answer": "\nMight be:\nA website or online documentation\nDescription:\nThis website/document provides information about LangChain, a technology or platform that could be used for language processing or analysis.\n"
+        }
+    ],
+    "example_selector": null,
+    "example_prompt": {
+        "input_variables": [
+            "question",
+            "answer"
+        ],
+        "output_parser": null,
+        "partial_variables": {},
+        "template": "Q: {question}\nA:{answer}",
+        "template_format": "f-string",
+        "validate_template": true,
+        "_type": "prompt"
+    },
+    "suffix": "Q: {input}\nA:",
+    "example_separator": "\n\n",
+    "prefix": "",
+    "template_format": "f-string",
+    "validate_template": true,
+    "_type": "few_shot"
+}

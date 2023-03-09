@@ -1,0 +1,58 @@
+_type: few_shot
+example_prompt:
+  _type: prompt
+  input_variables:
+  - question
+  - answer
+  output_parser: null
+  partial_variables: {}
+  template: 'Q: {question}
+
+    A:{answer}'
+  template_format: f-string
+  validate_template: true
+example_selector: null
+example_separator: '
+
+
+  '
+examples:
+- answer: '
+
+    Might be:
+
+    A YouTube video ID
+
+    Description:
+
+    The ID "vJzDRsEKDa0" is most likely a unique identifier for a specific video on
+    YouTube.
+
+    This alphanumeric code is automatically assigned to every video uploaded on the
+    platform and is used to access the video directly or share it with other users.
+
+    '
+  question: vJzDRsEKDa0
+- answer: '
+
+    Might be:
+
+    A website or online documentation
+
+    Description:
+
+    This website/document provides information about LangChain, a technology or platform
+    that could be used for language processing or analysis.
+
+    '
+  question: https://langchain.readthedocs.io/
+input_variables:
+- input
+output_parser: null
+partial_variables: {}
+prefix: ''
+suffix: 'Q: {input}
+
+  A:'
+template_format: f-string
+validate_template: true

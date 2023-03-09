@@ -1,0 +1,42 @@
+_type: few_shot
+example_prompt:
+  _type: prompt
+  input_variables:
+  - question
+  - answer
+  output_parser: null
+  partial_variables: {}
+  template: 'Q: {question}
+
+    A:{answer}'
+  template_format: f-string
+  validate_template: true
+example_selector: null
+example_separator: '
+
+
+  '
+examples:
+- answer: "\n\u53EF\u80FD\u662F:\nYouTube \u89C6\u9891 ID\nDescription:\n\u201CvJzDRsEKDa0\u201D\
+    \u8FD9\u4E2AID\u5F88\u53EF\u80FD\u662FYouTube\u4E0A\u7279\u5B9A\u89C6\u9891\u7684\
+    \u552F\u4E00\u6807\u8BC6\u7B26\u3002\n\u6BCF\u4E0A\u4F20\u4E00\u4E2A\u89C6\u9891\
+    \uFF0C\u8BE5\u5E73\u53F0\u90FD\u4F1A\u81EA\u52A8\u5206\u914D\u8FD9\u4E2A\u5B57\
+    \u6BCD\u6570\u5B57\u4EE3\u7801\uFF0C\u5E76\u7528\u4E8E\u76F4\u63A5\u8BBF\u95EE\
+    \u6216\u4E0E\u5176\u4ED6\u7528\u6237\u5171\u4EAB\u8BE5\u89C6\u9891\u3002\n"
+  question: vJzDRsEKDa0
+- answer: "\n\u53EF\u80FD\u662F:\n\u4E00\u4E2A\u7F51\u7AD9\u6216\u5728\u7EBF\u6587\
+    \u6863\nDescription:\n\u8FD9\u4E2A\u7F51\u7AD9/\u6587\u4EF6\u63D0\u4F9B\u6709\u5173\
+    LangChain\u7684\u4FE1\u606F\uFF0C\u5B83\u662F\u4E00\u79CD\u53EF\u7528\u4E8E\u8BED\
+    \u8A00\u5904\u7406\u6216\u5206\u6790\u7684\u6280\u672F\u6216\u5E73\u53F0\u3002\
+    \n"
+  question: https://langchain.readthedocs.io/
+input_variables:
+- input
+output_parser: null
+partial_variables: {}
+prefix: ''
+suffix: 'Q: {input}
+
+  A:'
+template_format: f-string
+validate_template: true
