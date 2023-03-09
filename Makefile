@@ -18,7 +18,7 @@ major:
 	bump2version major
 
 push:
-	git push origin master
+	git push origin main
 
 yapf:
 	poetry run yapf -i -vv **/*.py
