@@ -6,7 +6,7 @@ class What:
         self.is_zh = is_zh
 
     def get_response(self) -> dict[str, str]:
-        from utils import get_chains
+        from langwhat.utils import get_chains
         chain, chain_zh = get_chains()
         if self.is_zh:
             return chain_zh(self.query)
@@ -18,7 +18,7 @@ class What:
         from rich.table import Table
         from rich.style import Style
         from rich.text import Text
-        from utils import parse_chain_response
+        from .utils import parse_chain_response
         might_be, description = parse_chain_response(self.get_response())
 
         console = Console()

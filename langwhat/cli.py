@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-from os import environ as env
+from os import environ
 from . import __version__
 
 
@@ -36,9 +36,13 @@ def main():
 
     # OPENAI_API_KEY = args.openai_key or env.get("OPENAI_API_KEY")
     # BING_COOKIE_JSON = args.bing_cookie_json or env.get("BING_COOKIE_JSON") or env.get("COOKIE_FILE")
-    OPENAI_API_KEY = env.get("OPENAI_API_KEY")
+    OPENAI_API_KEY = environ.get("OPENAI_API_KEY")
     if not OPENAI_API_KEY:
-        raise Exception("OpenAI API key not provided, please provide it by running `export OPENAI_API_KEY=<sk-XXXX>`")
+        from .config import get_api_key
+        OPENAI_API_KEY = get_api_key()
+        environ['OPENAI_API_KEY'] = OPENAI_API_KEY
+        if not OPENAI_API_KEY:
+            raise Exception("OpenAI API key not provided, please provide it by running `export OPENAI_API_KEY=<sk-XXXX>`")
 
     # what = What(args.what, is_en=args.en, api_base=args.api_base)
     what = What(args.what, is_zh=args.zh, api_base=None)
