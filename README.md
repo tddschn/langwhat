@@ -6,6 +6,7 @@ What is it?
 Modified from Yihong's [iWhat](https://github.com/yihong0618/iWhat).
 
 - [langwhat](#langwhat)
+  - [Screenshots](#screenshots)
   - [Improvements](#improvements)
   - [Installation](#installation)
     - [pipx](#pipx)
@@ -17,6 +18,7 @@ Modified from Yihong's [iWhat](https://github.com/yihong0618/iWhat).
 
 ## Screenshots
 
+![](images/screenshot-hash.png)
 
 ## Improvements
 - Uses few-shot prompting to reduce model mis-behavior
