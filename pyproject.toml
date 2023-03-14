@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "langwhat"
-version = "2.0.2"
+version = "2.0.3"
 description = "What is it? pyWhat but with LLMs"
 authors = ["Teddy Xinyuan Chen <45612704+tddschn@users.noreply.github.com>"]
 license = "MIT"
