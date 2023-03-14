@@ -2,7 +2,7 @@
 
 Answer "What is it?" on the command line with the power of large language models (LLMs).
 
-[pyWhat](https://github.com/bee-san/pyWhat) LLM version, leveraging OpenAI API and Sydney (coming soon).
+[pyWhat](https://github.com/bee-san/pyWhat) LLM version, leveraging OpenAI API and Sydney (Bing AI Chat).
 
 - [LangWhat](#langwhat)
   - [Screenshots](#screenshots)
